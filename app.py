@@ -1,8 +1,12 @@
 from flask import Flask, render_template
 import requests
 from bs4 import BeautifulSoup
+from flask import Flask
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
+
 
 @app.route('/')
 def get_data():

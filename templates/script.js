@@ -1,6 +1,6 @@
 $(document).ready(function() {
     $.ajax({
-        url: 'http://127.0.0.1:5000',  // Reemplaza con la URL de tu API
+        url: 'https://colab.research.google.com/drive/1OMVWX57KJR7wuENpBs0rVhCVoZ8sCL-s#scrollTo=XCEKpQ_HD53b',  // Reemplaza con la URL de tu API
         method: 'GET',
         dataType: 'json',
         success: function(response) {
