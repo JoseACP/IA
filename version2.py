@@ -1,76 +1,51 @@
 import pandas as pd
-import matplotlib.pyplot as plt
 
 # Cargar el archivo CSV
-data = pd.read_csv('diputados.csv')
+csv_data = pd.read_csv('diputados.csv')
 
-# Crear un diccionario para almacenar las sumas de votos por estado
-resultados = {}
+# Mostrar información del DataFrame antes del cambio
+print(csv_data.info())
 
-# Sumar los votos por estado
-for index, row in data.iterrows():
-    estado = row['ESTADO']
-    votos_str = row['PAN']
-    
-    # Verificar si el valor no está vacío
-    if votos_str.strip():
-        votos = int(votos_str)
-        
-        if estado in resultados:
-            resultados[estado] += votos
-        else:
-            resultados[estado] = votos
+# Lista de columnas a convertir
+columnas_a_convertir = ['PAN', 'PRI', 'PRD', 'MORENA', 'PVEM', 'NUEVA_ALIANZA', 'MOVIMIENTO_CIUDADANO','PT']
 
-# Nombres de los estados
-nombres_estados = {
-    1: 'Aguascalientes',
-    2: 'Baja California',
-    3: 'Baja California Sur',
-    4: 'Campeche',
-    5: 'Coahuila',
-    6: 'Colima',
-    7: 'Chiapas',
-    8: 'Chihuahua',
-    9: 'Distrito Federal',
-    10: 'Durango',
-    11: 'Guanajuato',
-    12: 'Guerrero',
-    13: 'Hidalgo',
-    14: 'Jalisco',
-    15: 'México',
-    16: 'Michoacán',
-    17: 'Morelos',
-    18: 'Nayarit',
-    19: 'Nuevo León',
-    20: 'Oaxaca',
-    21: 'Puebla',
-    22: 'Querétaro',
-    23: 'Quintana Roo',
-    24: 'San Luis Potosí',
-    25: 'Sinaloa',
-    26: 'Sonora',
-    27: 'Tabasco',
-    28: 'Tamaulipas',
-    29: 'Tlaxcala',
-    30: 'Veracruz',
-    31: 'Yucatán',
-    32: 'Zacatecas'
-}
+# Cambiar el tipo de columna de 'object' a 'int64'
+for columna in columnas_a_convertir:
+    csv_data[columna] = csv_data[columna].apply(lambda x: int(x) if str(x).strip() else 0)
 
-# Obtener los nombres de estado y los totales de votos
-nombres_estado = [nombres_estados[estado] for estado in resultados.keys()]
-total_votos = list(resultados.values())
+# Mostrar información del DataFrame después del cambio
+print(csv_data.info())
 
-# Crear la gráfica de barras
-plt.bar(nombres_estado, total_votos)
+# Guardar el DataFrame modificado en un nuevo archivo CSV
+csv_data.to_csv('diputados_modificado.csv', index=False)
 
-# Configurar los detalles del gráfico
-plt.xlabel('Estado')
-plt.ylabel('Total de Votos')
-plt.title('PAN')
 
-# Rotar las etiquetas del eje x para mayor legibilidad
-plt.xticks(rotation=90)
 
-# Mostrar la gráfica
-plt.show()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

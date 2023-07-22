@@ -1,6 +1,4 @@
 import pandas as pd
-import matplotlib.pyplot as plt
-from pathlib import Path
 
 # Cargar el archivo CSV
 data = pd.read_csv('diputados.csv')
@@ -67,30 +65,3 @@ for estado, votos in resultados.items():
     print('- Votos totales:', votos)
     print('---')
 
-
-# Crear la gráfica de barras
-plt.bar(nombres_estado, total_votos)
-
-# Configurar los detalles del gráfico
-plt.xlabel('Estado')
-plt.ylabel('Total de Votos')
-plt.title('PAN')
-
-# Rotar las etiquetas del eje x para mayor legibilidad
-plt.xticks(rotation=90)
-
-# Guardar la imagen de la gráfica
-IMAGES_PATH = Path("images") / "end_to_end_project"
-IMAGES_PATH.mkdir(parents=True, exist_ok=True)
-
-def save_fig(fig_id, tight_layout=True, fig_extension="png", resolution=300):
-    path = IMAGES_PATH / f"{fig_id}.{fig_extension}"
-    if tight_layout:
-        plt.tight_layout()
-    plt.savefig(path, format=fig_extension, dpi=resolution)
-
-# Guardar la imagen de la gráfica de barras
-save_fig("grafica_barras_PRI")
-
-# Mostrar la gráfica
-plt.show()

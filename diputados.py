@@ -13,7 +13,7 @@ def read_csv(filename):
     return data
 
 # Example usage
-filename = 'diputados.csv'  # Replace with the path to your CSV file
+filename = 'diputados_modificado.csv'  # Replace with the path to your CSV file
 csv_data = read_csv(filename)
 
 # Accessing the data
